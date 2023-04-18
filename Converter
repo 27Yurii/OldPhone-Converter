@@ -1,0 +1,21 @@
+class OldPhoneConverter:
+    def __init__(self):
+        self.phone_pad = {
+            '2': 'ABC', '3': 'DEF', '4': 'GHI', '5': 'JKL', 
+            '6': 'MNO', '7': 'PQRS', '8': 'TUV', '9': 'WXYZ',
+            '0': ' ', '#': '#'
+        }
+    def convert_input(self, input_str):
+        output_str = ''
+        current_char = ''
+        current_count = 0
+        for char in input_str:
+            if char == current_char:
+                current_count += 1
+            else:
+                if current_char:
+                    output_str += self.phone_pad[current_char][current_count % len(self.phone_pad[current_char])]
+                current_char = char
+                current_count = 1
+        output_str += self.phone_pad[current_char][current_count % len(self.phone_pad[current_char])]
+        return output_str
